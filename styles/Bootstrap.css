@@ -1,0 +1,257 @@
+/* ********** Custom Properties ********** */
+:root {
+    --main-font: 'Raleway';
+    --alternate-font: sans-serif;
+    --font-size: 16px;
+    --line-height: 1.6;
+  
+    --main-color: rgb(217, 0, 98);
+    --main-modal-color: rgb(217, 0, 98, .75);
+    --second-color: rgb(20, 25, 45);
+    --second-modal-color: rgba(20, 25, 45, .75);
+    --alternate-color: rgb(80, 20, 100);
+    --alternate-modal-color: rgb(80, 20, 100, .75);
+    --action-color: rgb(84, 194, 141);
+    --action-modal-color: rgba(84, 194, 84, .75);
+  
+    --bg-color: rgb(242, 244, 247);
+    --bg-modal-color: rgba(242, 244, 247, .75);
+    --bg-alternate-color: rgb(255, 255, 255);
+    --bg-alternate-modal-color: rgba(255, 255, 255, .75);
+    --border-color: #DDD;
+  
+    --text-color: #515B6D;
+    --title-color: #333;
+  
+    --link-color: #509EE3;
+    --link-hover-color: var(--main-color);
+  
+    --max-width: 1200px;
+    --header-height: 5rem;
+  
+    --logo-width: 4rem;
+    --logo-height: 4rem;
+    --logo-spacing: .5rem;
+  
+    --nav-height: 64px;
+  }
+  
+  /* ********** Reset Styles ********** */
+  html {
+    font-family: var(--main-font), var(--alternate-font);
+    font-size: var(--font-size);
+    line-height:  var(--line-height);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+  }
+  
+  body {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    overflow-x: hidden;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--link-color);
+    transition: all .3s ease-out;
+  }
+  
+  a:hover { color: var(--link-hover-color); }
+  
+  h2 { font-size: 3rem; }
+  
+  h3 { font-size: 2.5rem; }
+  
+  ::selection {
+    background-color: var(--main-color);
+    color: var(--second-color);
+  }
+  
+  /* ********** Bootstrap Styles ********** */
+  .bg-dark {
+    background-color: var(--second-color) !important;
+  }
+  
+  .navbar-brand img {
+    width: auto;
+    height: var(--logo-height);
+    padding: var(--logo-spacing);
+  }
+  
+  .navbar-toggler {
+    border: 0;
+  }
+  
+  .navbar-toggler:hover,
+  .navbar-toggler:focus {
+    outline: 0;
+  }
+  
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    transition: all .3s ease;
+  }
+  
+  .navbar-dark .navbar-toggler-icon:hover {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(217, 0, 98, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  .nav-item:hover {
+    background-color: var(--main-modal-color);
+    transition: all .3s ease;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link {
+    display: block;
+    color: var(--main-color);
+    font-size: 1.15rem;
+    font-weight: bold;
+    transition: all .3s ease;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:hover { color: var(--bg-color); }
+  
+  .bg-success {
+    background-color: var(--action-color) !important;
+  }
+  
+  a.bg-success:hover {
+    background-color: var(--action-color) !important;
+    opacity: .85;
+    transition: all .3s ease
+  }
+  
+  .text-success {
+    color: var(--action-color) !important;
+  }
+  
+  .card a {
+    color: var(--alternate-color);
+  }
+  
+  .card a:hover {
+    color: var(--alternate-modal-color);
+  }
+  
+  .card-img-overlay {
+    background-color: var(--second-modal-color);
+  }
+  
+  .card-text a {
+    color: var(--action-color);
+  }
+  
+  .card-text a:hover {
+    color: var(--action-modal-color);
+  }
+  
+  .form-control {
+    border-color: var(--second-color);
+  }
+  
+  .form-control:focus {
+    border-color: var(--second-color);
+    box-shadow: 0 0 0 0.2rem var(--main-modal-color);
+  }
+  
+  .form-group label {
+    color: var(--main-color);
+    border-color: var(--second-color);
+  }
+  
+  .form-group .btn {
+    background-color: var(--main-color) !important;
+    font-weight: bold;
+  }
+  
+  /* ********** My Styles ********** */
+  .HeroImage {
+    min-height: calc(100vh + var(--logo-height));
+    background-size:auto;
+    background-color: rgb(108, 130, 145);
+    background-image: linear-gradient(135deg,rgba(47,145,224,.91),rgba(7,31,51,.97) 79%);
+    background-image:linear-gradient(131deg,rgba(28,118,173,.92), rgba(83, 184, 152, 1));
+  }
+  
+  .Services img {
+    background-color: var(--alternate-color);
+  }
+  
+  .Website .carousel {
+    margin: auto;
+    max-width: 500px;
+    height: auto;
+  }
+  
+  .ResponsiveSites figure {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .ResponsiveSites figure img {
+    padding: .5rem;
+    background-color: var(--alternate-color);
+  }
+  
+  .WorkFlow-steps sup {
+    font-size: 1rem;
+    color: var(--main-color);
+  }
+  
+  .SinglePage,
+  .MultiPage {
+    background-image: url('../img/site-singlepage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .MultiPage {
+    background-image: url('../img/site-multipage.jpg');
+  }
+  
+  .SinglePage > .u-fullScreen,
+  .MultiPage > .u-fullScreen {
+    background-color: var(--bg-modal-color);
+  }
+  
+  .AboutInfo {
+    padding: 1rem;
+    font-size: 150%;
+    background-color: var(--second-modal-color);
+  }
+  
+  .Footer {
+    background-color: var(--second-color);
+  }
+  
+  .u-fullScreen {
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .u-flowText { font-size: 1.25rem; }
+  
+  /* ********** Media Queries Small ********** */
+  @media (min-width: 576px) {
+  
+  }
+  
+  /* ********** Media Queries Medium ********** */
+  @media (min-width: 768px) {
+  
+  }
+  
+  /* ********** Media Queries Large ********** */
+  @media (min-width: 992px) {
+     .nav-item:hover { background-color: transparent; }
+  
+     .u-flowText { font-size: 1.75rem; }
+  }
+  
+  /* ********** Media Queries ExtraLarge ********** */
+  @media (min-width: 1200px) {
+  
+  }
