@@ -1,118 +1,13 @@
-var jSon={
-	"servicios":
-	[
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"01",
-			"paquete_desc":"Claro Basicos",
-			"servicio_cod":"01",
-			"servicio_desc":"Internet Inalambrico"			
-		},
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"01",
-			"paquete_desc":"Claro Basicos",
-			"servicio_cod":"02",
-			"servicio_desc":"Internet Fijo"
-		},
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"01",
-			"paquete_desc":"Claro Basicos",
-			"servicio_cod":"03",
-			"servicio_desc":"Cable Satelital"
-		},
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"01",
-			"paquete_desc":"Claro Basicos",
-			"servicio_cod":"04",
-			"servicio_desc":"Bloqueo de Numeros"
-		},
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"02",
-			"paquete_desc":"Bitel Basicos",
-			"servicio_cod":"05",
-			"servicio_desc":"Llamadas de emergencia"
-		},
-		{
-			"clasificacion_id":"1",
-			"clasificacion_desc":"Basicos",
-			"paquete_id":"02",
-			"paquete_desc":"Bitel Basicos",
-			"servicio_cod":"04",
-			"servicio_desc":"Bloqueo de Numeros"
-		},
-		{
-			"clasificacion_id":"2",
-			"clasificacion_desc":"SMS",
-			"paquete_id":"03",
-			"paquete_desc":"Claro SMS",
-			"servicio_cod":"06",
-			"servicio_desc":"Mensajes Gratis"
-		},
-		{
-			"clasificacion_id":"2",
-			"clasificacion_desc":"SMS",
-			"paquete_id":"03",
-			"paquete_desc":"Claro SMS",
-			"servicio_cod":"07",
-			"servicio_desc":"300 Mensajes"
-		},
-		{
-			"clasificacion_id":"2",
-			"clasificacion_desc":"SMS",
-			"paquete_id":"03",
-			"paquete_desc":"Claro SMS",
-			"servicio_cod":"08",
-			"servicio_desc":"Mensajes Audio"
-		},
-		{
-			"clasificacion_id":"2",
-			"clasificacion_desc":"SMS",
-			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
-			"servicio_cod":"07",
-			"servicio_desc":"300 Mensajes"
-		},
-		{
-			"clasificacion_id":"2",
-			"clasificacion_desc":"SMS",
-			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
-			"servicio_cod":"08",
-			"servicio_desc":"Mensajes Audio"
-		},
-		{
-			"clasificacion_id":"3",
-			"clasificacion_desc":"GPRS",
-			"paquete_id":"05",
-			"paquete_desc":"Claro GPRS",
-			"servicio_cod":"09",
-			"servicio_desc":"GPRS Gratis"
-		},
-		{
-			"clasificacion_id":"3",
-			"clasificacion_desc":"GPRS",
-			"paquete_id":"05",
-			"paquete_desc":"Claro GPRS",
-			"servicio_cod":"10",
-			"servicio_desc":"GPRS Premium"
-		}
-	]
-};
 
-var jSonServAdicionales={
-	"servicios":[]
-};
+
+
 function f_inicio(){		
 	//f_OdenarData(jSon);	
+	var jsonAgregadosGrabados=window.opener.jsonAgregadosGrabados;
+	var jSonGrabados = window.opener.jSonGrabados;
+	if(jsonAgregadosGrabados!="" && jSonGrabados!=""){
+
+	}
 	f_CrearBotones(jSon);
 	f_llenarLista(jSon,"cmbServPendientes");
 	
@@ -224,3 +119,211 @@ function f_OdenarData(data){
 			if(a.descripcion > b.descripcion) return 1;
 	});
 }
+
+var jSonServAdicionales={
+	"servicios":[]
+};
+
+var jSon2={
+	"servicios":
+	[
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"01",
+			"servicio_desc":"Internet Inalambrico"			
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"02",
+			"servicio_desc":"Internet Fijo"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"03",
+			"servicio_desc":"Cable Satelital"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"04",
+			"servicio_desc":"Bloqueo de Numeros"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"02",
+			"paquete_desc":"Bitel Basicos",
+			"servicio_cod":"05",
+			"servicio_desc":"Llamadas de emergencia"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"02",
+			"paquete_desc":"Bitel Basicos",
+			"servicio_cod":"04",
+			"servicio_desc":"Bloqueo de Numeros"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"06",
+			"servicio_desc":"Mensajes Gratis"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"07",
+			"servicio_desc":"300 Mensajes"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"08",
+			"servicio_desc":"Mensajes Audio"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"04",
+			"paquete_desc":"Movistar MSM",
+			"servicio_cod":"07",
+			"servicio_desc":"300 Mensajes"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"04",
+			"paquete_desc":"Movistar MSM",
+			"servicio_cod":"08",
+			"servicio_desc":"Mensajes Audio"
+		},
+		{
+			"clasificacion_id":"3",
+			"clasificacion_desc":"GPRS",
+			"paquete_id":"05",
+			"paquete_desc":"Claro GPRS",
+			"servicio_cod":"09",
+			"servicio_desc":"GPRS Gratis"
+		},
+		{
+			"clasificacion_id":"3",
+			"clasificacion_desc":"GPRS",
+			"paquete_id":"05",
+			"paquete_desc":"Claro GPRS",
+			"servicio_cod":"10",
+			"servicio_desc":"GPRS Premium"
+		}
+	]
+};
+
+var jSon3={
+	"servicios":
+	[
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"01",
+			"servicio_desc":"Internet Inalambrico"			
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"02",
+			"servicio_desc":"Internet Fijo"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"03",
+			"servicio_desc":"Cable Satelital"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"01",
+			"paquete_desc":"Claro Basicos",
+			"servicio_cod":"04",
+			"servicio_desc":"Bloqueo de Numeros"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"02",
+			"paquete_desc":"Bitel Basicos",
+			"servicio_cod":"05",
+			"servicio_desc":"Llamadas de emergencia"
+		},
+		{
+			"clasificacion_id":"1",
+			"clasificacion_desc":"Basicos",
+			"paquete_id":"02",
+			"paquete_desc":"Bitel Basicos",
+			"servicio_cod":"04",
+			"servicio_desc":"Bloqueo de Numeros"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"06",
+			"servicio_desc":"Mensajes Gratis"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"07",
+			"servicio_desc":"300 Mensajes"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"03",
+			"paquete_desc":"Claro SMS",
+			"servicio_cod":"08",
+			"servicio_desc":"Mensajes Audio"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"04",
+			"paquete_desc":"Movistar MSM",
+			"servicio_cod":"07",
+			"servicio_desc":"300 Mensajes"
+		},
+		{
+			"clasificacion_id":"2",
+			"clasificacion_desc":"SMS",
+			"paquete_id":"04",
+			"paquete_desc":"Movistar MSM",
+			"servicio_cod":"08",
+			"servicio_desc":"Mensajes Audio"
+		}
+	]
+};

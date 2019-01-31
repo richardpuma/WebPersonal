@@ -39,6 +39,9 @@ var jSon={
 	]
 };
 
+var jSonGrabados="";
+var jsonAgregadosGrabados="";
+
 var jSonServAdicionales={
 	"servicios":[]
 };
@@ -147,5 +150,6 @@ function f_OdenarData(data){
 }
 
 function f_verServicios(){
-	window.open("./listas.html",)
+	//window.open("./listas.html",)
+	window.open('./listas.html', '_blank', "width=800px,height=600px");
 }
