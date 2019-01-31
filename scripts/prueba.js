@@ -145,3 +145,7 @@ function f_OdenarData(data){
 			if(a.descripcion > b.descripcion) return 1;
 	});
 }
+
+function f_verServicios(){
+	window.open("./listas.html",)
+}

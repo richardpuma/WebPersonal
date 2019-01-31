@@ -113,11 +113,19 @@ var jSonServAdicionales={
 };
 function f_inicio(){		
 	//f_OdenarData(jSon);	
+	f_CrearBotones(jSon);
 	f_llenarLista(jSon,"cmbServPendientes");
 	
 }
 
-function f_CrearBotones
+function f_CrearBotones(data){
+	var tamData=data["servicios"].length;
+	var contenido="";
+	for(var i=0;i<tamData;i++){
+		contenido="";
+	}
+}
+
 
 function f_llenarLista(data,nombCombo){
 	var comboGeneral=document.getElementById(nombCombo);	
