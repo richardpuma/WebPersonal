@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>	
+	<link rel="StyleSheet" href="styles/listas.css" type="text/css" media="screen">
+	<script type="text/javascript" src="scripts/listas.js"></script>
+	</head>
+<body onload="f_inicio()">	
+	<div id="divBotones" class="divBotones"></div>
+	<div id="divContenedor" class="divContenedor">
+		<div id="divServPendientes" class="divServPendientes"></div>		
+		<div id="divOperaciones" class="divOperaciones">
+			<input type="button" value=">" id="btnMovIzquierda" name="btnMovIzquierda" alt="Agregar servicios" onclick="f_MovIzquierda()" >
+			<input type="button" value="<" id="btnMovDerecha" name="btnMovDerecha" alt="Servicios agregados" onclick="f_MovDerecha()">
+		</div>
+		<div id="divServAgregados" class="divServAgregados"></div>
+	</div>
+
+	<p>prueba de listas</p></br>
+
+	<div class="btn-group">
+		<dl>
+			<dt>subtitle</dt>
+			<dd><input type="checkbox" value="id2" id="one" ><label for="one">one</label></dd>
+			<dd><input type="checkbox" value="id2" id="two" ><label for="two">two</label></dd>
+			<dd><input type="checkbox" value="id2" id="three" ><label for="three">three</label></dd>
+			<dt>subtitle 2</dt>
+			<dd><input type="checkbox" value="id2" id="id3" ><label for="id3">one</label></dd>
+			<dd><input type="checkbox" value="id2" id="id4" ><label for="id4">two</label></dd>
+			<dd><input type="checkbox" value="id2" id="id5" ><label for="id5">three</label></dd>
+		</dl>
+	</div>	
+</body>
+</html>

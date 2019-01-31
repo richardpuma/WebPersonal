@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>	
+	<link rel="StyleSheet" href="styles/prueba.css" type="text/css" media="screen">
+	<script type="text/javascript" src="scripts/prueba.js"></script>
+	</head>
+<body onload="f_inicio()">	
+	<div id="divContenedor" class="divContenedor">
+		<div id="divServPendientes" class="divServPendientes">
+			<select id ="cmbServPendientes" multiple="multiple" class="cmbServPendientes"></select>
+		</div>
+		<div id="divOperaciones" class="divOperaciones">
+			<input type="button" value=">" id="btnMovIzquierda" name="btnMovIzquierda" alt="Agregar servicios" onclick="f_MovIzquierda()" >
+			<input type="button" value="<" id="btnMovDerecha" name="btnMovDerecha" alt="Servicios agregados" onclick="f_MovDerecha()">
+		</div>
+		<div id="divServAgregados" class="divServAgregados">
+			<select id="cmdServAgregados" multiple="multiple" class="cmdServAgregados"></select>
+		</div>
+	</div>
+	<p>prueba de listas</p></br>
+	<div>
+		<input type="button" id="btnCarrito" value="Agregar a carrito" onclick="f_AgregarCarrito()">
+	</div>
+	<div id ="divTabla">
+		<table>
+			<thead>
+				<tr>
+					<th>Cantidad</th>
+					<th>Equipo</th>
+					<th>Plan</th>
+					<th>Servicios</th>
+				</tr>>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="button" id="txtCantidad" value=""></td>
+					<td>
+						<select id="cmbEquipo" >
+							<option value="-1">Seleccione</option>
+							<option value="equipo1">equipo1</option>
+							<option value="equipo2">equipo2</option>
+							<option value="equipo3">equipo3</option>
+						</select>
+					</td>
+					<td>
+							<select id="cmbPlan" >
+									<option value="-1">Seleccione</option>
+									<option value="Plan1">Plan1</option>
+									<option value="Plan2">Plan2</option>
+									<option value="Plan3">Plan3</option>
+							</select>
+					</td>
+					<td><input type="button" value="servicios" id="btnServicios" onclick="f_verServicios()"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</br></br>
+	<div id="divCRUD">
+		<div id="divFormulario">
+			<form id="formulario" name="formulario">
+				<fieldset style="text-align: center;">
+					<legend>Contacto</legend>
+					<label for="codigoTxt">Codigo:</label>
+					<input type="text" id="codigoTxt" name="codigoTxt" value=""/>
+					</br></br>
+					<label for="nombreTxt">Nombre:</label>
+					<input type="text" id="nombreTxt" name="nombreTxt" value=""/>
+					</br></br>
+					<label for="apellidosTxt">Apellidos:</label>
+					<input type="text" id="apellidosTxt" name="apellidosTxt" value=""/>
+					</br></br>
+					<label for="sexo">Sexo: </label>
+					<input type="radio" id="radioM" name="sexo" value="M" checked/>
+					<label for="radioM">Masculino</label>
+					<input type="radio" id="radioF" name="sexo" value="F"/><label for="radioF">Femenino</label>
+					</br></br>
+					<label for="correoTxt">Correo:</label>
+					<input type="text" id="correoTxt" name="correoTxt" value=""/>
+					</br></br>
+					<input type="button" value="Guardar" id="btnGuardar"/>
+					<input type="button" value="Limpiar" id="btnLimpiar"/>
+				</fieldset>
+			</form>
+		</div>
+		</br></br>
+		<div id="divListaContacto">
+			<fieldset style="text-align: center;">
+				<legend>Lista de Contactos</legend>
+				<table id="tblListaContacto" style="width: 100%;"></table>
+			</fieldset>
+		</div>
+	</div>
+	
+	
+</body>
+</html>

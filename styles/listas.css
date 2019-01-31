@@ -1,0 +1,29 @@
+.divServPendientes{
+	display: inline-block;
+	width: 30%;
+}
+.divOperaciones{
+	display: inline-block;
+	width: 20%;
+}
+.divServAgregados{
+	display: inline-block;
+	width: 30%;
+}
+.divContenedor{
+	
+	
+	background-color: blueviolet;
+	margin: 0 10% 0 10%;
+}
+
+.btn-group{
+	width: 200px; height: 200px; overflow-y: scroll;
+}
+.lista{
+	list-style:none;
+}
+
+.ul_lista{
+	padding-inline-start: 0px;
+}
