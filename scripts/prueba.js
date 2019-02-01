@@ -39,8 +39,10 @@ var jSon={
 	]
 };
 
-var jSonGrabados="";
+var jsonGrabados="";
 var jsonAgregadosGrabados="";
+var codPlanGrabado="";
+var botonesGrabados="";
 
 var jSonServAdicionales={
 	"servicios":[]
@@ -151,5 +153,11 @@ function f_OdenarData(data){
 
 function f_verServicios(){
 	//window.open("./listas.html",)
-	window.open('./listas.html', '_blank', "width=800px,height=600px");
+	debugger;
+	var codPlan=document.getElementById("cmbPlan").value;
+	if(codPlan=="-1"){
+		alert("Seleccione un plan por favor");
+		return;
+	}
+	window.open('./listas.html?codPlan='+codPlan, '_blank', "width=800px,height=600px");
 }
