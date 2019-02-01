@@ -77,7 +77,7 @@ var jSon2={
 			"clasificacion_id":"2",
 			"clasificacion_desc":"SMS",
 			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
+			"paquete_desc":"Movistar SMS",
 			"servicio_cod":"07",
 			"servicio_desc":"300 Mensajes"
 		},
@@ -85,7 +85,7 @@ var jSon2={
 			"clasificacion_id":"2",
 			"clasificacion_desc":"SMS",
 			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
+			"paquete_desc":"Movistar SMS",
 			"servicio_cod":"08",
 			"servicio_desc":"Mensajes Audio"
 		},
@@ -96,14 +96,6 @@ var jSon2={
 			"paquete_desc":"Claro GPRS",
 			"servicio_cod":"09",
 			"servicio_desc":"GPRS Gratis"
-		},
-		{
-			"clasificacion_id":"3",
-			"clasificacion_desc":"GPRS",
-			"paquete_id":"05",
-			"paquete_desc":"Claro GPRS",
-			"servicio_cod":"10",
-			"servicio_desc":"GPRS Premium"
 		}
 	]
 };
@@ -187,7 +179,7 @@ var jSon3={
 			"clasificacion_id":"2",
 			"clasificacion_desc":"SMS",
 			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
+			"paquete_desc":"Movistar SMS",
 			"servicio_cod":"07",
 			"servicio_desc":"300 Mensajes"
 		},
@@ -195,7 +187,7 @@ var jSon3={
 			"clasificacion_id":"2",
 			"clasificacion_desc":"SMS",
 			"paquete_id":"04",
-			"paquete_desc":"Movistar MSM",
+			"paquete_desc":"Movistar SMS",
 			"servicio_cod":"08",
 			"servicio_desc":"Mensajes Audio"
 		}
@@ -207,14 +199,14 @@ var codPlan="";
 var contenidoBtn="";
 
 function f_inicio(){		
-	//f_OdenarData(jSon);	
+	//f_OdenarData(jSon);
 	codPlan=getParameterByName("codPlan");
 	var strJSonGrabados = window.opener.jsonGrabados;
 	 var strJsonAgregadosGrabados=window.opener.jsonAgregadosGrabados;
 	 var codPlanGrabado=window.opener.codPlanGrabado;
 	 	 
 	if(strJsonAgregadosGrabados=="" ){ //primera vez
-		if(codPlan=="codPlan1"){
+		if(codPlan=="CodPlan1"){
 			JsonGrabados2=jSon2;
 		}
 		else{
@@ -225,11 +217,13 @@ function f_inicio(){
 						};
 		
 		f_CrearBotones(JsonGrabados2);
+		f_CrearLista(JsonGrabados2,"divServPendientes","SMS");
+		f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","SMS");
 	}
 	else{//n veces
 		
 		if(codPlan!=codPlanGrabado){//cambio de plan
-			if(codPlan=="codPlan1"){
+			if(codPlan=="CodPlan1"){
 				JsonGrabados2=jSon2;
 				f_CrearBotones(JsonGrabados2);
 			}
@@ -266,7 +260,7 @@ function f_CrearBotones(data){
 	for(var i=0;i<tamData;i++){
 		var clasificacion_id=data["servicios"][i].clasificacion_id;		
 		if(clasificacionesIdCreadas.indexOf(clasificacion_id)==-1){
-			contenidoBtn+="<input type='button' id='btn";
+			contenidoBtn+="<input type='button' id='btn-";
 			contenidoBtn+=data["servicios"][i].clasificacion_desc;
 			contenidoBtn+="' value='";
 			contenidoBtn+=data["servicios"][i].clasificacion_desc;
@@ -276,6 +270,39 @@ function f_CrearBotones(data){
 		
 	}	
 	document.getElementById("divBotones").innerHTML=contenidoBtn;
+}
+
+function f_CrearLista(data,divContenedor,clasificacion_desc){
+	var contenidoLista="<dl>";
+	var tamDataList=data["servicios"].length;
+	var paquete_id_creadas=[];
+	for(var i=0;i<tamDataList;i++){
+		if(clasificacion_desc==data["servicios"][i].clasificacion_desc){
+			var paquete_id=data["servicios"][i].paquete_id;		
+			if(paquete_id_creadas.indexOf(paquete_id)==-1){
+				contenidoLista+="<dt>";
+				contenidoLista+=data["servicios"][i].paquete_desc;
+				contenidoLista+="</dt>";
+				paquete_id_creadas.push(paquete_id);
+			}
+			contenidoLista+="<dd>";
+			contenidoLista+="<input type='checkbox' id='";
+			contenidoLista+=data["servicios"][i].paquete_id+"-";
+			contenidoLista+=data["servicios"][i].servicio_cod;
+			contenidoLista+="' value='";
+			contenidoLista+=data["servicios"][i].servicio_cod;
+			contenidoLista+="'>";
+			contenidoLista+="<label for='";
+			contenidoLista+=data["servicios"][i].paquete_id+"-";
+			contenidoLista+=data["servicios"][i].servicio_cod;
+			contenidoLista+="'>";
+			contenidoLista+=data["servicios"][i].servicio_desc;
+			contenidoLista+="</label>";
+			contenidoLista+="</dd>";
+		}		
+	}
+	contenidoLista+="</dl>";
+	document.getElementById(divContenedor).innerHTML=contenidoLista;
 }
 
 function f_formarEstructuraGrabada(){
