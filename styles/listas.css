@@ -1,7 +1,11 @@
+*{
+	margin: 0;
+	padding: 0;
+}
 .divServPendientes{
 	display: inline-block;
 	width: 300px;
-	height: 300px;
+	height: 200px;
 	background-color: brown;
 	overflow-y: scroll;
 }
@@ -12,7 +16,7 @@
 .divServAgregados{
 	display: inline-block;
 	width: 300px;
-	height: 300px;
+	height: 200px;
 	background-color: aqua;
 	overflow-y: scroll;
 }
@@ -32,4 +36,17 @@
 
 .ul_lista{
 	padding-inline-start: 0px;
+}
+
+.btnOperaciones{
+	width: 140px;
+	margin-bottom: 10px;
+}
+
+.ddlistaIzquierda{
+	padding: 2px 0px 2px 15px;
+}
+
+.ddlistaDerecha{
+	padding: 2px 0px 2px 15px;
 }

@@ -42,7 +42,6 @@ var jSon={
 var jsonGrabados="";
 var jsonAgregadosGrabados="";
 var codPlanGrabado="";
-var botonesGrabados="";
 
 var jSonServAdicionales={
 	"servicios":[]

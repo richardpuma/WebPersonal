@@ -196,10 +196,9 @@ var jSon3={
 var JsonGrabados2={};
 var jsonAgregadosGrabados2={};
 var codPlan="";
-var contenidoBtn="";
+var clasificacionesIdCreadas=[];
 
-function f_inicio(){		
-	//f_OdenarData(jSon);
+function f_inicio(){			
 	codPlan=getParameterByName("codPlan");
 	var strJSonGrabados = window.opener.jsonGrabados;
 	 var strJsonAgregadosGrabados=window.opener.jsonAgregadosGrabados;
@@ -216,30 +215,37 @@ function f_inicio(){
 						"servicios":[]
 						};
 		
-		f_CrearBotones(JsonGrabados2);
-		f_CrearLista(JsonGrabados2,"divServPendientes","SMS");
-		f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","SMS");
+		f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);	
+		f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+		f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+		f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 	}
 	else{//n veces
 		
 		if(codPlan!=codPlanGrabado){//cambio de plan
 			if(codPlan=="CodPlan1"){
 				JsonGrabados2=jSon2;
-				f_CrearBotones(JsonGrabados2);
 			}
 			else{
-				JsonGrabados2=jSon3;
-				f_CrearBotones(JsonGrabados2);
+				JsonGrabados2=jSon3;				
 			}
 			
 			jsonAgregadosGrabados2={
 							"servicios":[]
 							};
+			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
+			f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
 		else{//no cambio de plan
+			debugger;
 			JsonGrabados2=JSON.parse(strJSonGrabados);
 			jsonAgregadosGrabados2=JSON.parse(strJsonAgregadosGrabados);
-			f_formarEstructuraGrabada();
+			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
+			f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
 		
 	}
@@ -254,25 +260,54 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function f_CrearBotones(data){
-	var tamData=data["servicios"].length;
-	var clasificacionesIdCreadas=[];
-	for(var i=0;i<tamData;i++){
-		var clasificacion_id=data["servicios"][i].clasificacion_id;		
+function f_CrearBotones(dataIzquierda,dataDerecha){
+	var tamDataIzqui=dataIzquierda["servicios"].length;
+	var tamDataDerecha=dataDerecha["servicios"].length;	
+	var contenidoBtn="";
+	for(var i=0;i<tamDataIzqui;i++){
+		var clasificacion_id=dataIzquierda["servicios"][i].clasificacion_id;		
 		if(clasificacionesIdCreadas.indexOf(clasificacion_id)==-1){
 			contenidoBtn+="<input type='button' id='btn-";
-			contenidoBtn+=data["servicios"][i].clasificacion_desc;
+			contenidoBtn+=dataIzquierda["servicios"][i].clasificacion_desc;
 			contenidoBtn+="' value='";
-			contenidoBtn+=data["servicios"][i].clasificacion_desc;
+			contenidoBtn+=dataIzquierda["servicios"][i].clasificacion_desc;
 			contenidoBtn+="' onclick='f_opcionSeleccionada(this)'>";
 			clasificacionesIdCreadas.push(clasificacion_id);
-		}
-		
-	}	
+		}		
+	}
+	for(var i=0;i<tamDataDerecha;i++){
+		var clasificacion_id=dataDerecha["servicios"][i].clasificacion_id;		
+		if(clasificacionesIdCreadas.indexOf(clasificacion_id)==-1){
+			contenidoBtn+="<input type='button' id='btn-";
+			contenidoBtn+=dataDerecha["servicios"][i].clasificacion_desc;
+			contenidoBtn+="' value='";
+			contenidoBtn+=dataDerecha["servicios"][i].clasificacion_desc;
+			contenidoBtn+="' onclick='f_opcionSeleccionada(this)'>";
+			clasificacionesIdCreadas.push(clasificacion_id);
+		}		
+	}		
 	document.getElementById("divBotones").innerHTML=contenidoBtn;
 }
 
+function f_opcionSeleccionada(btnSeleccionado){
+	var valueBtn=btnSeleccionado.value;
+	f_cambiarEstilo(btnSeleccionado);
+	f_CrearLista(JsonGrabados2,"divServPendientes",valueBtn);
+	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",valueBtn);
+}
+
+function f_cambiarEstilo(btnSeleccionado){
+	btnSeleccionado.style.background="#F7D358"
+}
 function f_CrearLista(data,divContenedor,clasificacion_desc){
+	var listaEstilo="";
+	if(divContenedor=="divServPendientes")
+	{
+		listaEstilo="ddlistaIzquierda";
+	}
+	else{
+		listaEstilo="ddlistaDerecha";
+	}
 	var contenidoLista="<dl>";
 	var tamDataList=data["servicios"].length;
 	var paquete_id_creadas=[];
@@ -285,14 +320,20 @@ function f_CrearLista(data,divContenedor,clasificacion_desc){
 				contenidoLista+="</dt>";
 				paquete_id_creadas.push(paquete_id);
 			}
-			contenidoLista+="<dd>";
+			contenidoLista+="<dd class='"
+			contenidoLista+=listaEstilo;
+			contenidoLista+="'>";
 			contenidoLista+="<input type='checkbox' id='";
+			contenidoLista+=data["servicios"][i].clasificacion_id+"-";
 			contenidoLista+=data["servicios"][i].paquete_id+"-";
 			contenidoLista+=data["servicios"][i].servicio_cod;
 			contenidoLista+="' value='";
+			contenidoLista+=data["servicios"][i].clasificacion_id+"-";
+			contenidoLista+=data["servicios"][i].paquete_id+"-";
 			contenidoLista+=data["servicios"][i].servicio_cod;
 			contenidoLista+="'>";
 			contenidoLista+="<label for='";
+			contenidoLista+=data["servicios"][i].clasificacion_id+"-";
 			contenidoLista+=data["servicios"][i].paquete_id+"-";
 			contenidoLista+=data["servicios"][i].servicio_cod;
 			contenidoLista+="'>";
@@ -305,63 +346,83 @@ function f_CrearLista(data,divContenedor,clasificacion_desc){
 	document.getElementById(divContenedor).innerHTML=contenidoLista;
 }
 
-function f_formarEstructuraGrabada(){
-	document.getElementById("divBotones").innerHTML=window.opener.botonesGrabados;
-}
-
-
-function f_llenarLista(data,nombCombo){
-	var comboGeneral=document.getElementById(nombCombo);	
-	
-	var contenido="";
-	for(var i=0;i<data["servicios"].length;i++){
-		contenido+="<option value=";
-		contenido+=data["servicios"][i].codigo;
-		contenido+=">";
-		contenido+=data["servicios"][i].descripcion;
-		contenido+="</option>";
-	}
-	comboGeneral.innerHTML=contenido;
-}
-
 function f_MovIzquierda(){
 	//debugger;
-	var cmbServPendientes=document.getElementById("cmbServPendientes");
-	if(cmbServPendientes.selectedIndex==-1){
-		alert("Seleccione un servicio.");
+	var listaIzquierda=document.getElementsByClassName("ddlistaIzquierda");	
+	if(!(f_validarCheck(listaIzquierda))){
+		alert("Seleccione un elemento");
 		return;
 	}
-	var optSeleccionada=cmbServPendientes.options[cmbServPendientes.selectedIndex];
-	var CodServicio=[optSeleccionada.value];	
+	var listPaqCodServSelect=f_obtenerPaqCodServSelect(listaIzquierda);
+	//var idPaquete=listPaqCodServSelect.split("-")[0];
+	//var CodServicio=listPaqCodServSelect.split("-")[1];
+	var tipoClasificacionDesc="";	
 	var dataSerAdicionales="";
 	var objTemporal={};	
-	var servicios=jSon["servicios"];	
+	var servicios=JsonGrabados2["servicios"];	
 	var i=servicios.length;
-	var tamjSonServAdicionales=jSonServAdicionales["servicios"].length;
+	var tamjsonAgregadosGrabados2=jsonAgregadosGrabados2["servicios"].length;
 	while(i--){
-		if(CodServicio.indexOf(servicios[i].codigo)!=-1){
+		if(listPaqCodServSelect.indexOf(servicios[i].clasificacion_id+"-"+servicios[i].paquete_id+"-"+servicios[i].servicio_cod)!=-1){	
+			tipoClasificacionDesc=servicios[i].clasificacion_desc;		
 			dataSerAdicionales+='{';
-			dataSerAdicionales+='"categoria":"';
-			dataSerAdicionales+=servicios[i].categoria;
+			dataSerAdicionales+='"clasificacion_id":"';
+			dataSerAdicionales+=servicios[i].clasificacion_id;
 			dataSerAdicionales+='",';
-			dataSerAdicionales+='"codigo":"';
-			dataSerAdicionales+=servicios[i].codigo;
+			dataSerAdicionales+='"clasificacion_desc":"';
+			dataSerAdicionales+=servicios[i].clasificacion_desc;
 			dataSerAdicionales+='",';
-			dataSerAdicionales+='"descripcion":"';
-			dataSerAdicionales+=servicios[i].descripcion;
+			dataSerAdicionales+='"paquete_id":"';
+			dataSerAdicionales+=servicios[i].paquete_id;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"paquete_desc":"';
+			dataSerAdicionales+=servicios[i].paquete_desc;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"servicio_cod":"';
+			dataSerAdicionales+=servicios[i].servicio_cod;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"servicio_desc":"';
+			dataSerAdicionales+=servicios[i].servicio_desc;
 			dataSerAdicionales+='"}';
 			objTemporal=JSON.parse(dataSerAdicionales);
-			jSonServAdicionales["servicios"].splice(tamjSonServAdicionales+1,0,objTemporal);
+			jsonAgregadosGrabados2["servicios"].splice(tamjsonAgregadosGrabados2+1,0,objTemporal);
 			servicios.splice(i,1);
-			dataSerAdicionales="";
+			dataSerAdicionales="";			
 		}
 	}
-	f_OdenarData(jSon);
-	f_llenarCombo(jSon,"cmbServPendientes");
-	f_OdenarData(jSonServAdicionales);
-	f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
+	//f_OdenarData(jSon);
+	//f_llenarCombo(jSon,"cmbServPendientes");
+	//f_OdenarData(jSonServAdicionales);
+	//f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
+	//debugger;
+	f_CrearLista(JsonGrabados2,"divServPendientes",tipoClasificacionDesc);
+	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",tipoClasificacionDesc);
 	
 } 
+
+function f_validarCheck(lista){
+	var valor=false;
+	if(lista!="" || lista != null){
+		for(var i=0;i<lista.length;i++){
+			if(lista[i].childNodes[0].checked){
+				valor=true;
+			}
+		}	
+	}
+	return valor;
+}
+
+function f_obtenerPaqCodServSelect(lista){
+	var listPaqCodSelec=[];
+	if(lista!="" || lista != null){
+		for(var i=0;i<lista.length;i++){
+			if(lista[i].childNodes[0].checked){
+				listPaqCodSelec.push(lista[i].childNodes[0].value);
+			}
+		}	
+	}
+	return listPaqCodSelec;
+}
 
 function f_MovDerecha(){
 	var cmdServAgregados=document.getElementById("cmdServAgregados");
@@ -400,19 +461,27 @@ function f_MovDerecha(){
 	f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
 }
 
-function f_OdenarData(data){
-	data["servicios"].sort(function(a,b){
-			if(a.descripcion == b.descripcion) return 0;
-			if(a.descripcion < b.descripcion) return -1;
-			if(a.descripcion > b.descripcion) return 1;
-	});
+function f_OdenarData(dataIzquierda,tamDataDerecha){	
+	var tamDataIzqui=dataIzquierda["servicios"].length;
+	//var tamDataDerecha=dataDerecha["servicios"].length;	
+	for(var i=0;i<tamDataIzqui;i++){
+		var clasificacion_id=dataIzquierda["servicios"][i].clasificacion_id
+		if(clasificacionesIdCreadas.indexOf(clasificacion_id)!=-1){
+			dataIzquierda["servicios"].sort(function(a,b){
+				if(a.servicio_desc == b.servicio_desc) return 0;
+				if(a.servicio_desc < b.servicio_desc) return -1;
+				if(a.servicio_desc > b.servicio_desc) return 1;
+			});
+		}
+	}
+	
 }
 
 function f_btnCerrar(){
+	debugger;
 	window.opener.jsonGrabados=JSON.stringify(JsonGrabados2);
 	 window.opener.jsonAgregadosGrabados=JSON.stringify(jsonAgregadosGrabados2);	
 	 window.opener.codPlanGrabado=codPlan;
-	 window.opener.botonesGrabados=contenidoBtn;
 	window.close();
 }
 
