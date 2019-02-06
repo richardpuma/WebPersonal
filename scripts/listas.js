@@ -216,7 +216,7 @@ function f_inicio(){
 						};
 		
 		f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);	
-		f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+		//f_OdenarData(JsonGrabados2);	
 		f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
 		f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 	}
@@ -234,7 +234,7 @@ function f_inicio(){
 							"servicios":[]
 							};
 			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
-			f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+			//f_OdenarData(JsonGrabados2);	
 			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
 			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
@@ -243,7 +243,7 @@ function f_inicio(){
 			JsonGrabados2=JSON.parse(strJSonGrabados);
 			jsonAgregadosGrabados2=JSON.parse(strJsonAgregadosGrabados);
 			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
-			f_OdenarData(JsonGrabados2,jsonAgregadosGrabados2);	
+			//f_OdenarData(JsonGrabados2);	
 			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
 			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
@@ -395,6 +395,7 @@ function f_MovIzquierda(){
 	//f_OdenarData(jSonServAdicionales);
 	//f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
 	//debugger;
+	//f_OdenarData(JsonGrabados2);
 	f_CrearLista(JsonGrabados2,"divServPendientes",tipoClasificacionDesc);
 	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",tipoClasificacionDesc);
 	
@@ -425,43 +426,60 @@ function f_obtenerPaqCodServSelect(lista){
 }
 
 function f_MovDerecha(){
-	var cmdServAgregados=document.getElementById("cmdServAgregados");
-	if(cmdServAgregados.selectedIndex==-1){
-		alert("Seleccione un servicio Adicional.");
+	debugger;
+	var listaDerecha=document.getElementsByClassName("ddlistaDerecha");	
+	if(!(f_validarCheck(listaDerecha))){
+		alert("Seleccione un elemento");
 		return;
 	}
-	var optSeleccionada=cmdServAgregados.options[cmdServAgregados.selectedIndex];
-	var CodServicio=[optSeleccionada.value];
-	var dataServiciosTemporal="";
+	var listPaqCodServSelect=f_obtenerPaqCodServSelect(listaDerecha);
+	//var idPaquete=listPaqCodServSelect.split("-")[0];
+	//var CodServicio=listPaqCodServSelect.split("-")[1];
+	var tipoClasificacionDesc="";	
+	var dataSerAdicionales="";
 	var objTemporal={};	
-	var servicios=jSonServAdicionales["servicios"];	
+	var servicios=jsonAgregadosGrabados2["servicios"];	
 	var i=servicios.length;
-	var tamjSon=jSon["servicios"].length;
+	var tamjsonGrabados2=JsonGrabados2["servicios"].length;
 	while(i--){
-		if(CodServicio.indexOf(servicios[i].codigo)!=-1){
-			dataServiciosTemporal+='{';
-			dataServiciosTemporal+='"categoria":"';
-			dataServiciosTemporal+=servicios[i].categoria;
-			dataServiciosTemporal+='",';
-			dataServiciosTemporal+='"codigo":"';
-			dataServiciosTemporal+=servicios[i].codigo;
-			dataServiciosTemporal+='",';
-			dataServiciosTemporal+='"descripcion":"';
-			dataServiciosTemporal+=servicios[i].descripcion;
-			dataServiciosTemporal+='"}';
-			objTemporal=JSON.parse(dataServiciosTemporal);
-			jSon["servicios"].splice(tamjSon+1,0,objTemporal);
+		if(listPaqCodServSelect.indexOf(servicios[i].clasificacion_id+"-"+servicios[i].paquete_id+"-"+servicios[i].servicio_cod)!=-1){	
+			tipoClasificacionDesc=servicios[i].clasificacion_desc;		
+			dataSerAdicionales+='{';
+			dataSerAdicionales+='"clasificacion_id":"';
+			dataSerAdicionales+=servicios[i].clasificacion_id;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"clasificacion_desc":"';
+			dataSerAdicionales+=servicios[i].clasificacion_desc;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"paquete_id":"';
+			dataSerAdicionales+=servicios[i].paquete_id;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"paquete_desc":"';
+			dataSerAdicionales+=servicios[i].paquete_desc;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"servicio_cod":"';
+			dataSerAdicionales+=servicios[i].servicio_cod;
+			dataSerAdicionales+='",';
+			dataSerAdicionales+='"servicio_desc":"';
+			dataSerAdicionales+=servicios[i].servicio_desc;
+			dataSerAdicionales+='"}';
+			objTemporal=JSON.parse(dataSerAdicionales);
+			JsonGrabados2["servicios"].splice(tamjsonGrabados2+1,0,objTemporal);
 			servicios.splice(i,1);
-			dataServiciosTemporal="";
+			dataSerAdicionales="";			
 		}
 	}
-	f_OdenarData(jSon);
-	f_llenarCombo(jSon,"cmbServPendientes");
-	f_OdenarData(jSonServAdicionales);
-	f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
+	//f_OdenarData(jSon);
+	//f_llenarCombo(jSon,"cmbServPendientes");
+	//f_OdenarData(jSonServAdicionales);
+	//f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
+	//debugger;
+	//f_OdenarData(JsonGrabados2);
+	f_CrearLista(JsonGrabados2,"divServPendientes",tipoClasificacionDesc);
+	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",tipoClasificacionDesc);
 }
 
-function f_OdenarData(dataIzquierda,tamDataDerecha){	
+function f_OdenarData(dataIzquierda){	
 	var tamDataIzqui=dataIzquierda["servicios"].length;
 	//var tamDataDerecha=dataDerecha["servicios"].length;	
 	for(var i=0;i<tamDataIzqui;i++){
