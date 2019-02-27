@@ -216,8 +216,9 @@ function f_inicio(){
 						};
 		
 		f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);	
-		//f_OdenarData(JsonGrabados2);	
+		f_OdenarDataPaquete(JsonGrabados2);	
 		f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+		f_OdenarDataPaquete(jsonAgregadosGrabados2);
 		f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 	}
 	else{//n veces
@@ -234,17 +235,19 @@ function f_inicio(){
 							"servicios":[]
 							};
 			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
-			//f_OdenarData(JsonGrabados2);	
+			f_OdenarDataPaquete(JsonGrabados2);		
 			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+			f_OdenarDataPaquete(jsonAgregadosGrabados2);	
 			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
 		else{//no cambio de plan
-			debugger;
+			//debugger;
 			JsonGrabados2=JSON.parse(strJSonGrabados);
 			jsonAgregadosGrabados2=JSON.parse(strJsonAgregadosGrabados);
 			f_CrearBotones(JsonGrabados2,jsonAgregadosGrabados2);
-			//f_OdenarData(JsonGrabados2);	
+			f_OdenarDataPaquete(JsonGrabados2);	
 			f_CrearLista(JsonGrabados2,"divServPendientes","Basicos");//harcodeo
+			f_OdenarDataPaquete(jsonAgregadosGrabados2);
 			f_CrearLista(jsonAgregadosGrabados2,"divServAgregados","Basicos");//har
 		}
 		
@@ -390,13 +393,9 @@ function f_MovIzquierda(){
 			dataSerAdicionales="";			
 		}
 	}
-	//f_OdenarData(jSon);
-	//f_llenarCombo(jSon,"cmbServPendientes");
-	//f_OdenarData(jSonServAdicionales);
-	//f_llenarCombo(jSonServAdicionales,"cmdServAgregados");
-	//debugger;
-	//f_OdenarData(JsonGrabados2);
+	f_OdenarDataPaquete(JsonGrabados2);	
 	f_CrearLista(JsonGrabados2,"divServPendientes",tipoClasificacionDesc);
+	f_OdenarDataPaquete(jsonAgregadosGrabados2);	
 	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",tipoClasificacionDesc);
 	
 } 
@@ -479,24 +478,25 @@ function f_MovDerecha(){
 	f_CrearLista(jsonAgregadosGrabados2,"divServAgregados",tipoClasificacionDesc);
 }
 
-function f_OdenarData(dataIzquierda){	
-	var tamDataIzqui=dataIzquierda["servicios"].length;
+function f_OdenarDataPaquete(data){	
+	debugger;
+	var tamData=data["servicios"].length;
 	//var tamDataDerecha=dataDerecha["servicios"].length;	
-	for(var i=0;i<tamDataIzqui;i++){
-		var clasificacion_id=dataIzquierda["servicios"][i].clasificacion_id
-		if(clasificacionesIdCreadas.indexOf(clasificacion_id)!=-1){
-			dataIzquierda["servicios"].sort(function(a,b){
-				if(a.servicio_desc == b.servicio_desc) return 0;
-				if(a.servicio_desc < b.servicio_desc) return -1;
-				if(a.servicio_desc > b.servicio_desc) return 1;
+	//for(var i=0;i<tamData;i++){
+		//var clasificacion_id=data["servicios"][i].clasificacion_id
+		//if(clasificacionesIdCreadas.indexOf(clasificacion_id)!=-1){
+			data["servicios"].sort(function(a,b){
+				if(a.paquete_desc == b.paquete_desc) return 0;
+				if(a.paquete_desc < b.paquete_desc) return -1;
+				if(a.paquete_desc > b.paquete_desc) return 1;
 			});
-		}
-	}
+		//}
+	//}
 	
 }
 
 function f_btnCerrar(){
-	debugger;
+	//debugger;
 	window.opener.jsonGrabados=JSON.stringify(JsonGrabados2);
 	 window.opener.jsonAgregadosGrabados=JSON.stringify(jsonAgregadosGrabados2);	
 	 window.opener.codPlanGrabado=codPlan;
